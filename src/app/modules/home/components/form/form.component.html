@@ -33,7 +33,7 @@
             <select
               id="tipoVeiculo"
               formControlName="tipoVeiculo"
-              (change)="onSelectFipe($event.target.value)"
+              (change)="fipeComponent.onSelectFipe($event.target.value)"
             >
               <option *ngFor="let tipe of listVehicles" value="{{ tipe.tipo }}">
                 {{ tipe.name }}
@@ -54,11 +54,15 @@
               type="text"
               id="marca"
               formControlName="marca"
-              (keyup)="consultaFipe(this.form.get('marca')!.value)"
+              (keyup)="
+                fipeComponent.consultaFipe(this.form.get('marca')!.value)
+              "
               [readOnly]="getCampo('tipoVeiculo').value === ''"
             />
 
-            <div class="marcasList" *ngIf="filterFipeArray.length">
+            <app-fipe-list #fipeComponent [form]="form"></app-fipe-list>
+
+            <!-- <div class="marcasList" *ngIf="filterFipeArray.length">
               <ul>
                 <li
                   *ngFor="let item of filterFipeArray"
@@ -67,7 +71,7 @@
                   {{ item.nome }}
                 </li>
               </ul>
-            </div>
+            </div> -->
           </div>
           <app-error-msg
             [control]="getCampo('marca')"
@@ -227,12 +231,13 @@
             [control]="getCampo('cep')"
             label="CEP"
           ></app-error-msg>
-          <app-popup-error-cep
+
+          <app-popup
             *ngIf="cepHasError"
-            (close)="(cepHasError)"
+            (close)="cepHasError = false"
             [msgErrorPopup]="errorMessage"
-          >
-          </app-popup-error-cep>
+            [typePopup]="'erro'"
+          ></app-popup>
         </div>
 
         <div class="input-box">
@@ -297,9 +302,12 @@
         <button type="submit" [disabled]="!form.valid">Enviar</button>
       </div>
 
-      <app-popup-form-valid
-        *ngIf="formDir.submitted && form.valid"
-      ></app-popup-form-valid>
+      <app-popup
+        *ngIf="formClose"
+        (close)="formClose = false"
+        [msgErrorPopup]="'Formulário enviado com sucesso'"
+        [typePopup]="'valid'"
+      ></app-popup>
     </form>
   </div>
 </div>

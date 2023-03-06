@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PopupErrorCepComponent } from './popup-error-cep.component';
+import { FipeListComponent } from './fipe-list.component';
 
-describe('PopupErrorCepComponent', () => {
-  let component: PopupErrorCepComponent;
-  let fixture: ComponentFixture<PopupErrorCepComponent>;
+describe('FipeListComponent', () => {
+  let component: FipeListComponent;
+  let fixture: ComponentFixture<FipeListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PopupErrorCepComponent ]
+      declarations: [ FipeListComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PopupErrorCepComponent);
+    fixture = TestBed.createComponent(FipeListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

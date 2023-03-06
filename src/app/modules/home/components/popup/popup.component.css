@@ -1,16 +1,12 @@
-.popup-erro {
+.popup-erro,
+.popup-valid {
   position: fixed;
   top: 70px;
   left: 50%;
   transform: translate(-50%, -50%);
 
-  background-color: #ff1717;
   color: #ffffff;
   border-radius: 70px;
-  /* box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); */
-  -webkit-box-shadow: 3px 11px 62px -10px rgba(222, 44, 44, 0.61);
-  -moz-box-shadow: 3px 11px 62px -10px rgba(222, 44, 44, 0.61);
-  box-shadow: 3px 11px 62px -10px rgba(222, 44, 44, 0.61);
 
   display: flex;
   justify-content: center;
@@ -22,6 +18,20 @@
   z-index: 15;
 
   animation: toBottom 0.3s forwards;
+}
+
+.popup-erro {
+  background-color: #ff1717;
+  -webkit-box-shadow: 3px 11px 62px -10px rgba(222, 44, 44, 0.61);
+  -moz-box-shadow: 3px 11px 62px -10px rgba(222, 44, 44, 0.61);
+  box-shadow: 3px 11px 62px -10px rgba(222, 44, 44, 0.61);
+}
+
+.popup-valid {
+  background-color: #25da25;
+  -webkit-box-shadow: 3px 11px 62px -10px rgba(44, 222, 59, 0.61);
+  -moz-box-shadow: 3px 11px 62px -10px rgba(44, 222, 53, 0.61);
+  box-shadow: 3px 11px 62px -10px rgba(44, 222, 53, 0.61);
 }
 
 @keyframes toBottom {

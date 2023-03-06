@@ -1,4 +1,3 @@
-import { catchError, throwError } from 'rxjs';
 import { ConsultaCepService } from './../../services/consulta-cep.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {
@@ -35,8 +34,6 @@ import { ListsService } from './../../services/lists.service';
 export class FormComponent implements OnInit {
   public listVehicles: Array<TypeVeiculo> = [];
   public colorList: Array<ColorList> = [];
-  public fipeListArray: Array<FipeList> = [];
-  public filterFipeArray: Array<any> = [];
   public fuelOptions: Array<FuelOptions> = [];
 
   form!: FormGroup;
@@ -87,53 +84,6 @@ export class FormComponent implements OnInit {
     });
 
     this.fuelOptions = this.listsService.getFuel();
-  }
-
-  onSelectFipe(value: string) {
-    this.listsService.getFipe(value).subscribe({
-      next: (res) => (this.fipeListArray = res),
-    });
-
-    this.resetValueFipe();
-  }
-
-  consultaFipe(text: string) {
-    this.filterFipeArray = this.fipeListArray.filter(({ nome }) => {
-      const textNormalize = this.normalizeString(text);
-      const nameNormalize = this.normalizeString(nome);
-
-      if (textNormalize === nameNormalize) {
-        this.setValueFipe(nome);
-        return null;
-      }
-      return nameNormalize.startsWith(textNormalize);
-    });
-
-    if (text === '') {
-      this.filterFipeArray = [];
-    }
-  }
-
-  normalizeString(string: string) {
-    return string
-      .toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .replace('ë', 'e');
-  }
-
-  setValueFipe(name: any) {
-    this.form.patchValue({
-      marca: name,
-    });
-
-    this.filterFipeArray = [];
-  }
-
-  resetValueFipe() {
-    this.form.patchValue({
-      marca: '',
-    });
   }
 
   getCampo(campo: string) {
@@ -189,14 +139,16 @@ export class FormComponent implements OnInit {
     });
   }
 
+  formClose = false;
   public onSubmit() {
     console.log(JsonToXML.parse('obj', this.form.value));
     console.log(this.form.value);
 
-    this.http
-      .post('https://httpbin.org/post', JSON.stringify(this.form.value))
-      .subscribe({
-        next: (dados) => console.log(dados),
-      });
+    this.formClose = true;
+    setTimeout(() => {
+      this.formClose = false;
+    }, 2000);
+
+    this.http.post('https://httpbin.org/post', JSON.stringify(this.form.value));
   }
 }

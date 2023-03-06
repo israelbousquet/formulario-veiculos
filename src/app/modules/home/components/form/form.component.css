@@ -329,7 +329,7 @@ button:hover {
   color: var(--color-1);
 }
 
-.marcasList {
+/* .marcasList {
   position: absolute;
   max-height: 200px;
   min-width: 200px;
@@ -381,7 +381,7 @@ button:hover {
   .marcasList {
     width: 100%;
   }
-}
+} */
 
 /* .cookie-title{
   margin-bottom: 1rem;

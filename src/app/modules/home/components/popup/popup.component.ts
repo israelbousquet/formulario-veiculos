@@ -4,22 +4,27 @@ import {
   EventEmitter,
   Input,
   OnDestroy,
+  OnInit,
   Output,
 } from '@angular/core';
 
 @Component({
-  selector: 'app-popup-error-cep',
-  templateUrl: './popup-error-cep.component.html',
-  styleUrls: ['./popup-error-cep.component.css'],
+  selector: 'app-popup',
+  templateUrl: './popup.component.html',
+  styleUrls: ['./popup.component.css'],
 })
-export class PopupErrorCepComponent implements OnDestroy {
+export class PopupComponent implements OnInit, OnDestroy {
   @Input() msgErrorPopup: string = '';
+  @Input() typePopup: string = '';
 
   @Output() close = new EventEmitter();
   private elementRef: ElementRef;
 
   constructor(elementRef: ElementRef) {
     this.elementRef = elementRef;
+  }
+
+  ngOnInit(): void {
     this.addOutsideClickListener();
   }
 
@@ -47,6 +52,4 @@ export class PopupErrorCepComponent implements OnDestroy {
   closePopup() {
     this.close.emit();
   }
-
-  ngOnInit(): void {}
 }

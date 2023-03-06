@@ -1,0 +1,10 @@
+<div class="marcasList" *ngIf="filterFipeArray.length">
+  <ul>
+    <li
+      *ngFor="let item of filterFipeArray"
+      (click)="setValueFipe(item.nome)"
+    >
+      {{ item.nome }}
+    </li>
+  </ul>
+</div>

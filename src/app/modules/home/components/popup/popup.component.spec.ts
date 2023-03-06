@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PopupFormValidComponent } from './popup-form-valid.component';
+import { PopupComponent } from './popup.component';
 
-describe('PopupFormValidComponent', () => {
-  let component: PopupFormValidComponent;
-  let fixture: ComponentFixture<PopupFormValidComponent>;
+describe('PopupComponent', () => {
+  let component: PopupComponent;
+  let fixture: ComponentFixture<PopupComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PopupFormValidComponent ]
+      declarations: [ PopupComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PopupFormValidComponent);
+    fixture = TestBed.createComponent(PopupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
