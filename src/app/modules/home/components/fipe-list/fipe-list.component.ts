@@ -29,6 +29,7 @@ export class FipeListComponent implements OnInit {
   }
 
   consultaFipe(text: string) {
+    console.log(text);
     this.filterFipeArray = this.fipeListArray.filter(({ nome }) => {
       const textNormalize = this.normalizeString(text);
       const nameNormalize = this.normalizeString(nome);
